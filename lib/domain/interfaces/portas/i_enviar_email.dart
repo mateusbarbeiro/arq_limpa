@@ -1,5 +1,5 @@
 import '../../dto/email_dto.dart';
 
-abstract class EnviarEmail {
+abstract class IEnviarEmail {
   bool enviar(EmailDto emailDto);
 }

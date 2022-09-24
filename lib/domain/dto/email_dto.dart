@@ -1,10 +1,10 @@
 class EmailDto {
-  String email;
+  String emailDestinatario;
   String assunto;
   String corpo;
 
   EmailDto(
-    this.email,
+    this.emailDestinatario,
     this.assunto,
     this.corpo,
   );
