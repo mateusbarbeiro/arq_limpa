@@ -23,3 +23,13 @@ class AtividadeAtualizarDto extends AtividadeCriarDto {
     required super.grupoId,
   });
 }
+
+class AtividadeDto extends AtividadeAtualizarDto {
+  AtividadeDto({
+    required super.id,
+    required super.nome,
+    required super.maximoHoras,
+    required super.equivalencia,
+    required super.grupoId,
+  });
+}

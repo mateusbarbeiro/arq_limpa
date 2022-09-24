@@ -35,3 +35,14 @@ class CertificadoAtualizarDto extends CertificadoCriarDto {
     required super.urlImagem,
   });
 }
+
+class CertificadoDto extends CertificadoAtualizarDto {
+  CertificadoDto({
+    required super.id,
+    required super.titulo,
+    required super.descricao,
+    required super.dataEmissao,
+    required super.grupoId,
+    required super.urlImagem,
+  });
+}
