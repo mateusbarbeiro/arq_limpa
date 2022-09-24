@@ -1,16 +1,57 @@
+import 'package:arq_limpa/domain/entidades/atividade.dart';
+import 'package:arq_limpa/domain/entidades/certificado.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('valida data e hora', () {
-    test('quantidadeHoras não pode ser negativa', () {});
+  Certificado certificado = Certificado(
+    titulo: "titulo",
+    descricao: "descricao",
+    dataEmissao: DateTime.now(),
+    quantidadeHoras: 10,
+    quantidadeHorasValidadas: 10,
+    verificado: false,
+    atividade: Atividade(
+      nome: "atividade",
+      maximoHoras: 25,
+      equivalencia: 100,
+    ),
+  );
+  group('validações de quantidadeHoras e quantidadeHorasValidadas', () {
+    test('quantidadeHoras deve ser informada (não pode ser zero)', () {
+      certificado.quantidadeHoras = 0;
+      expect(() => certificado.validarQuantidadeHoras(), throwsException);
+    });
 
-    test('quantidadeHorasValidadas não pode ser negativo', () {});
+    test('quantidadeHoras não pode ser negativa', () {
+      certificado.quantidadeHoras = -10;
+      expect(() => certificado.validarQuantidadeHoras(), throwsException);
+    });
 
-    test(
-        'quantidadeHorasValidadas deve ser obrigatória quando validado for TRUE',
-        () {});
+    test('quantidadeHorasValidadas deve ser informada (não pode ser zero)', () {
+      certificado.quantidadeHorasValidadas = 0;
+      expect(
+          () => certificado.validarQuantidadeHorasValidadas(), throwsException);
+    });
 
-    test('quantidadeHorasValidadas não pode ser maior que quantidadeHoras',
-        () {});
+    test('quantidadeHorasValidadas não pode ser negativa', () {
+      certificado.quantidadeHorasValidadas = -10;
+      expect(
+          () => certificado.validarQuantidadeHorasValidadas(), throwsException);
+    });
+  });
+
+  group('validações de horas validadas quando certificado for verificado', () {
+    certificado.verificado = true;
+    test('quantidadeHorasValidadas deve ser informada (não pode ser zero)', () {
+      certificado.quantidadeHorasValidadas = 0;
+      expect(() => certificado.validarHorasValidadasCertificadoVerificado(),
+          throwsException);
+    });
+
+    test('quantidadeHorasValidadas não pode ser negativa', () {
+      certificado.quantidadeHorasValidadas = -50;
+      expect(() => certificado.validarHorasValidadasCertificadoVerificado(),
+          throwsException);
+    });
   });
 }
