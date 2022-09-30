@@ -63,4 +63,13 @@ class Certificado {
       throw Exception('Deveria ser inserido a quantidade de horas validadas');
     }
   }
+
+  void verificaCertificado() {
+    verificado = true;
+    quantidadeHorasValidadas = _calculaHorasValidadas;
+  }
+
+  double get _calculaHorasValidadas {
+    return quantidadeHoras * (atividade.equivalencia / 100);
+  }
 }
