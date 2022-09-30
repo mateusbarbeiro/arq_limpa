@@ -9,9 +9,6 @@ class Certificado {
   late double quantidadeHoras;
   late double quantidadeHorasValidadas;
   late bool verificado;
-
-//  late bool invalido;
-//  late String? motivoInvalido;
   late Atividade atividade;
   late String? urlImagem;
 
@@ -23,8 +20,6 @@ class Certificado {
     required this.quantidadeHoras,
     this.quantidadeHorasValidadas = 0,
     this.verificado = false,
-//    this.invalido = false,
-//    this.motivoInvalido,
     required this.atividade,
     this.urlImagem,
   });
