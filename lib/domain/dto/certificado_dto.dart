@@ -3,7 +3,7 @@ class CertificadoCriarDto {
   String descricao;
   DateTime dataEmissao;
   double quantidadeHoras;
-  int grupoId;
+  int atividadeId;
   String urlImagem;
 
   CertificadoCriarDto({
@@ -11,7 +11,7 @@ class CertificadoCriarDto {
     required this.descricao,
     required this.dataEmissao,
     this.quantidadeHoras = 0,
-    required this.grupoId,
+    required this.atividadeId,
     required this.urlImagem,
   });
 }
@@ -25,7 +25,7 @@ class CertificadoAtualizarDto extends CertificadoCriarDto {
     required super.descricao,
     required super.dataEmissao,
     super.quantidadeHoras,
-    required super.grupoId,
+    required super.atividadeId,
     required super.urlImagem,
   });
 }
@@ -36,7 +36,12 @@ class CertificadoDto extends CertificadoAtualizarDto {
     required super.titulo,
     required super.descricao,
     required super.dataEmissao,
-    required super.grupoId,
+    required super.atividadeId,
     required super.urlImagem,
+    required this.horasValidadas,
+    required this.verificado,
   });
+
+  bool verificado;
+  double horasValidadas;
 }

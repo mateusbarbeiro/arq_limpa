@@ -1,8 +1,10 @@
+import '../dto/atividade_dto.dart';
+
 class Atividade {
-  int? id;
-  String nome;
-  int maximoHoras;
-  int equivalencia; // porcentagem
+  late int? id;
+  late String nome;
+  late int maximoHoras;
+  late int equivalencia; // porcentagem
 
   Atividade({
     this.id,
@@ -10,6 +12,13 @@ class Atividade {
     required this.maximoHoras,
     required this.equivalencia,
   });
+
+  Atividade.fromDto(AtividadeDto dto) {
+    nome = dto.nome;
+    maximoHoras = dto.maximoHoras;
+    id = dto.id;
+    equivalencia = dto.equivalencia;
+  }
 
   void validarNome() {
     nome.length <= 3

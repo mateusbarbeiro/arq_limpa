@@ -12,7 +12,11 @@ class NotificarEmailCaso {
     return enviarEmail.enviar(EmailDto(email, '', ''));
   }
 
-  bool notificarCertificadoValidado(String email) {
-    return enviarEmail.enviar(EmailDto(email, '', ''));
+  bool notificarCertificadoVerificado(String email, String mensagem) {
+    return enviarEmail.enviar(EmailDto(
+      email,
+      'Certificado validado.',
+      mensagem,
+    ));
   }
 }

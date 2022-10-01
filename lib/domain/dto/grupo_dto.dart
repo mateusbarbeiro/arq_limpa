@@ -20,3 +20,11 @@ class GrupoAtualizarDto extends GrupoCriarDto {
     super.atividadeIds,
   });
 }
+
+class GrupoDto extends GrupoAtualizarDto {
+  GrupoDto({
+    required super.nome,
+    required super.descricao,
+    required super.horasObrigatorias,
+  });
+}

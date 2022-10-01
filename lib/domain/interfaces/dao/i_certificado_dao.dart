@@ -10,4 +10,7 @@ abstract class ICerificadoDao {
   Future<CertificadoDto> getById(int id);
 
   Future<List<CertificadoDto>> getAll();
+
+  Future updateSomeFields(Map<String, dynamic> updated);
+  // Future<List<CertificadoDto>> fechar();
 }

@@ -39,7 +39,7 @@ class Certificado {
     verificado = false;
   }
 
-  void validarQuantidadeHoras() {
+  Certificado validarQuantidadeHoras() {
     quantidadeHoras == 0
         ? throw Exception('Deve ser informado quantidade de horas')
         : null;
@@ -47,29 +47,53 @@ class Certificado {
     quantidadeHoras < 0
         ? throw Exception('Quantidade de horas não podem ser negativas')
         : null;
+    return this;
   }
 
-  void validarQuantidadeHorasValidadas() {
+  Certificado validarQuantidadeHorasValidadas() {
     if (quantidadeHorasValidadas == 0) {
       throw Exception('Deve ser informado quantidade de horas');
     }
     if (quantidadeHorasValidadas < 0) {
       throw Exception('Quantidade de horas não podem ser negativas');
     }
+    return this;
   }
 
-  void validarHorasValidadasCertificadoVerificado() {
+  Certificado validarHorasValidadasCertificadoVerificado() {
     if (verificado && quantidadeHorasValidadas <= 0) {
       throw Exception('Deveria ser inserido a quantidade de horas validadas');
     }
+
+    return this;
   }
 
-  void verificaCertificado() {
+  Certificado verificaHorasCertificado() {
     verificado = true;
     quantidadeHorasValidadas = _calculaHorasValidadas;
+
+    return this;
   }
 
   double get _calculaHorasValidadas {
     return quantidadeHoras * (atividade.equivalencia / 100);
+  }
+
+  Certificado validarSePodeAtualizar() {
+    if (verificado) {
+      throw Exception(
+        'Certificado não pode ser atualizado pois já se encontra validado.',
+      );
+    }
+    return this;
+  }
+
+  Certificado validarSePodeExcluir() {
+    if (verificado) {
+      throw Exception(
+        'Certificado não pode ser excluído pois já se encontra validado.',
+      );
+    }
+    return this;
   }
 }
