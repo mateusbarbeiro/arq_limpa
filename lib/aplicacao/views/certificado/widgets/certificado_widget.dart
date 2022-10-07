@@ -49,8 +49,8 @@ class CertificadoWidget extends State<CertificadoPage> {
               children: certificadoDto
                   .map(
                     (e) => CardCertificado(
-                      id: e.id ?? 0,
-                      validado: e.verificado!,
+                      id: e.id,
+                      validado: e.verificado,
                       titulo: e.titulo,
                       descricao: e.descricao,
                     ),
