@@ -1,44 +1,45 @@
-// import 'package:hexa_certificado/dominio/dtos/certificado_dto.dart';
-// import 'package:hexa_certificado/dominio/models/certificado.dart';
-// import 'package:hexa_certificado/dominio/ports/i_certificado_dao.dart';
 
-// class CertificadoDaoTest implements ICertificadoDao {
-//   final Map<String, Certificado> _data = <String, Certificado>{};
+import 'package:arq_limpa/domain/dto/certificado_dto.dart';
+import 'package:arq_limpa/domain/entidades/certificado.dart';
+import 'package:arq_limpa/domain/interfaces/dao/i_certificado_dao.dart';
 
-//   @override
-//   Future deleteById(int id) {
-//     // TODO: implement deleteById
-//     throw UnimplementedError();
-//   }
+class CertificadoDaoTest implements ICertificadoDao {
+  final Map<String, Certificado> _data = <String, Certificado>{};
 
-//   @override
-//   Future<List<CertificadoDto>> getAll() async {
-//     List<CertificadoDto> result = [];
+  @override
+  Future deleteById(int id) {
+    // TODO: implement deleteById
+    throw UnimplementedError();
+  }
 
-//     _data.forEach((key, value) {
-//       result.add(value.toDto());
-//     });
-//     return result;
-//   }
+  @override
+  Future<CertificadoDto> getById(int id) {
+    // TODO: implement getById
+    throw UnimplementedError();
+  }
 
-//   @override
-//   Future<CertificadoDto> getById(int id) {
-//     // TODO: implement getById
-//     throw UnimplementedError();
-//   }
 
-//   @override
-//   Future insert(CertificadoDto object) {
-//     var entidade = Certificado.fromDto(object);
-//     // entidade.validaHoras();
+  @override
+  Future updateSomeFields(Map<String, dynamic> updated) {
+    // TODO: implement updateSomeFields
+    throw UnimplementedError();
+  }
 
-//     _data[entidade.id.toString()] = entidade;
-//     return Future.value();
-//   }
+  @override
+  Future update(CertificadoAtualizarDto object) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 
-//   @override
-//   Future update(CertificadoDto object) {
-//     // TODO: implement update
-//     throw UnimplementedError();
-//   }
-// }
+  @override
+  Future insert(CertificadoCriarDto object) {
+    // TODO: implement insert
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<CertificadoDto>> getAll() {
+    // TODO: implement getAll
+    throw UnimplementedError();
+  }
+}

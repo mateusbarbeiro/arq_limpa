@@ -1,37 +1,43 @@
-// import 'package:hexa_certificado/dominio/dtos/certificado_dto.dart';
-// import 'package:hexa_certificado/dominio/ports/i_certificado_dao.dart';
-// import 'package:hexa_certificado/dominio/ports/i_certificado_service.dart';
-// import 'package:hexa_certificado/infraestrutura/test/certificado_dao_test.dart';
+import 'package:arq_limpa/domain/dto/certificado_dto.dart';
+import 'package:arq_limpa/domain/interfaces/dao/i_certificado_dao.dart';
+import 'package:arq_limpa/infraestrutura/test/certificado_dao_test.dart';
 
-// class CertificadoServiceTest implements ICertificadoService {
-//   ICertificadoDao certificadoDao = CertificadoDaoTest();
+class CertificadoServiceTest implements ICertificadoDao {
+  ICertificadoDao certificadoDao = CertificadoDaoTest();
 
-//   @override
-//   Future deleteById(int id) {
-//     // TODO: implement deleteById
-//     throw UnimplementedError();
-//   }
+  @override
+  Future deleteById(int id) {
+    // TODO: implement deleteById
+    throw UnimplementedError();
+  }
 
-//   @override
-//   Future<List<CertificadoDto>> getAll() async {
-//     return certificadoDao.getAll();
-//   }
+  @override
+  Future<List<CertificadoDto>> getAll() {
+    // TODO: implement getAll
+    throw UnimplementedError();
+  }
 
-//   @override
-//   Future<CertificadoDto> getById(int id) {
-//     // TODO: implement getById
-//     throw UnimplementedError();
-//   }
+  @override
+  Future<CertificadoDto> getById(int id) {
+    // TODO: implement getById
+    throw UnimplementedError();
+  }
 
-//   @override
-//   Future insert(CertificadoDto object) {
-//     certificadoDao.insert(object);
-//     return Future.value();
-//   }
+  @override
+  Future insert(CertificadoCriarDto object) {
+    // TODO: implement insert
+    throw UnimplementedError();
+  }
 
-//   @override
-//   Future update(CertificadoDto object) {
-//     // TODO: implement update
-//     throw UnimplementedError();
-//   }
-// }
+  @override
+  Future update(CertificadoAtualizarDto object) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
+
+  @override
+  Future updateSomeFields(Map<String, dynamic> updated) {
+    // TODO: implement updateSomeFields
+    throw UnimplementedError();
+  }
+}
