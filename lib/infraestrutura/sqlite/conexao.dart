@@ -6,7 +6,7 @@ class Conexao {
 
   static Future<Database> get() async {
     if (_db == null) {
-      var path = join(await getDatabasesPath(), 'certificadoII');
+      var path = join(await getDatabasesPath(), 'certificado_arq_limp');
       _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(createTableGrupo);
         db.execute(createTableAtividade);
@@ -53,28 +53,9 @@ const createTableCertificado = '''
   )
 ''';
 
-// const insertCertificado =
-//     '''INSERT INTO certificado (titulo, dataEmissao, descricao, 
-//       categoria, quantidadeHoras, quantidadeHorasValidadas, 
-//       validado, urlImage) VALUES (
-//         'Testes 1',
-//         '06/09/2022',
-//         'Descrição do certificado',
-//         'Grupo 1',
-//         '5',
-//         '5',
-//         true,
-//         'object.urlImagem')''';
-
-// const insertCertificado =
-//     '''INSERT INTO certificado (titulo, dataEmissao, descricao, 
-//       categoria, quantidadeHoras, quantidadeHorasValidadas, 
-//       validado, urlImage) VALUES (
-//         'Testes 1',
-//         '06/09/2022',
-//         'Descrição do certificado',
-//         'Grupo 1',
-//         '5',
-//         '5',
-//         true,
-//         'object.urlImagem')''';
+const insertGrupos = '''
+  insert into grupos (nome, descricao, horas_obrigatorias) values 
+  ('Grupo I','Atividades de ensino','50'),
+  ('Grupo II','Atividades de pesquisa','50'),
+  ('Grupo III','Atividades sociais','50');
+''';

@@ -1,6 +1,9 @@
 import 'package:arq_limpa/aplicacao/my_app.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'infraestrutura/configuracoes/injecao_dependencia.dart';
+
+void main() async {
+  await setupInjection();
   runApp(const MyApp());
 }
