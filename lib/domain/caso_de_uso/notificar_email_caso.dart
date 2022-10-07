@@ -4,16 +4,17 @@ import '../interfaces/portas/i_enviar_email.dart';
 class NotificarEmailCaso {
   late IEnviarEmail enviarEmail;
 
-  bool notificarCertificadoCadastrado(String email) {
-    return enviarEmail.enviar(EmailDto(email, '', ''));
+  Future<bool> notificarCertificadoCadastrado(String email) async {
+    return await enviarEmail.enviar(EmailDto(email, '', ''));
   }
 
-  bool notificarCertificadoAtualizado(String email) {
-    return enviarEmail.enviar(EmailDto(email, '', ''));
+  Future<bool> notificarCertificadoAtualizado(String email) async {
+    return await enviarEmail.enviar(EmailDto(email, '', ''));
   }
 
-  bool notificarCertificadoVerificado(String email, String mensagem) {
-    return enviarEmail.enviar(EmailDto(
+  Future<bool> notificarCertificadoVerificado(
+      String email, String mensagem) async {
+    return await enviarEmail.enviar(EmailDto(
       email,
       'Certificado validado.',
       mensagem,

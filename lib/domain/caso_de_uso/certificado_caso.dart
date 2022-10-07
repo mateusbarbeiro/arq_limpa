@@ -94,7 +94,7 @@ class CertificadoCaso {
         'verificado': certificado.verificado,
       });
 
-      NotificarEmailCaso().notificarCertificadoVerificado(
+      await NotificarEmailCaso().notificarCertificadoVerificado(
         'user@gmail.com',
         '''
           Certificado ${certificado.titulo.toUpperCase()} foi validado.
