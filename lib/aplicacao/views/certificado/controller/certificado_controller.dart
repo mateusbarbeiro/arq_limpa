@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 
 class CertificadoController {
   final formKey = GlobalKey<FormState>();
-  final ICerificadoDao _service = GetIt.I.get<ICerificadoDao>();
+  final ICertificadoDao _service = GetIt.I.get<ICertificadoDao>();
 
   final tituloController = TextEditingController();
   final descricaoController = TextEditingController();

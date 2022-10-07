@@ -2,13 +2,14 @@ import 'package:arq_limpa/domain/caso_de_uso/notificar_email_caso.dart';
 import 'package:arq_limpa/domain/dto/certificado_dto.dart';
 import 'package:arq_limpa/domain/entidades/atividade.dart';
 import 'package:arq_limpa/domain/entidades/certificado.dart';
+import 'package:get_it/get_it.dart';
 
 import '../interfaces/dao/i_atividade_dao.dart';
 import '../interfaces/dao/i_certificado_dao.dart';
 import 'atividade_caso.dart';
 
 class CertificadoCaso {
-  late ICerificadoDao certificadoDao; // todo: implementar interface
+  late ICertificadoDao certificadoDao = GetIt.I.get<ICertificadoDao>();
   late IAtividadeDao atividadeDao;
 
   Future<bool> criar(CertificadoCriarDto criarDto) async {

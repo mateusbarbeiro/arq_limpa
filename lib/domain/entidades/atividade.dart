@@ -1,23 +1,27 @@
 import '../dto/atividade_dto.dart';
+import 'grupo.dart';
 
 class Atividade {
   late int? id;
   late String nome;
   late int maximoHoras;
   late int equivalencia; // porcentagem
+  late Grupo grupo;
 
   Atividade({
     this.id,
     required this.nome,
     required this.maximoHoras,
     required this.equivalencia,
+    required this.grupo,
   });
 
-  Atividade.fromDto(AtividadeDto dto) {
+  Atividade.fromDto(AtividadeDto dto, Grupo grupo) {
     nome = dto.nome;
     maximoHoras = dto.maximoHoras;
     id = dto.id;
     equivalencia = dto.equivalencia;
+    this.grupo = grupo;
   }
 
   void validarNome() {

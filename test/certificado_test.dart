@@ -1,5 +1,6 @@
 import 'package:arq_limpa/domain/entidades/atividade.dart';
 import 'package:arq_limpa/domain/entidades/certificado.dart';
+import 'package:arq_limpa/domain/entidades/grupo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -11,10 +12,14 @@ void main() {
     quantidadeHorasValidadas: 10,
     verificado: false,
     atividade: Atividade(
-      nome: "atividade",
-      maximoHoras: 25,
-      equivalencia: 100,
-    ),
+        nome: "atividade",
+        maximoHoras: 25,
+        equivalencia: 100,
+        grupo: Grupo(
+          descricao: '',
+          horasObrigatorias: 1,
+          nome: '',
+        )),
   );
   group('validações de quantidadeHoras e quantidadeHorasValidadas', () {
     test('quantidadeHoras deve ser informada (não pode ser zero)', () {

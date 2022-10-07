@@ -1,6 +1,6 @@
 import '../../dto/certificado_dto.dart';
 
-abstract class ICerificadoDao {
+abstract class ICertificadoDao {
   Future insert(CertificadoCriarDto object);
 
   Future update(CertificadoAtualizarDto object);

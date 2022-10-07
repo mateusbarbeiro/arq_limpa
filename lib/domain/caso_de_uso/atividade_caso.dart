@@ -1,3 +1,5 @@
+import 'package:arq_limpa/domain/entidades/grupo.dart';
+
 import '../dto/atividade_dto.dart';
 import '../entidades/atividade.dart';
 import '../interfaces/dao/i_atividade_dao.dart';
@@ -55,8 +57,12 @@ class AtividadeCaso {
       id,
     );
     Atividade atividade = Atividade.fromDto(
-      atividadeDto,
-    );
+        atividadeDto,
+        Grupo(
+          nome: '',
+          descricao: '',
+          horasObrigatorias: 1,
+        ));
     return atividade;
   }
 }

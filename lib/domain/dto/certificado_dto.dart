@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class CertificadoCriarDto {
   String titulo;
   String descricao;
@@ -24,7 +26,7 @@ class CertificadoAtualizarDto extends CertificadoCriarDto {
     required super.titulo,
     required super.descricao,
     required super.dataEmissao,
-    super.quantidadeHoras,
+    required super.quantidadeHoras,
     required super.atividadeId,
     required super.urlImagem,
   });
@@ -40,6 +42,7 @@ class CertificadoDto extends CertificadoAtualizarDto {
     required super.urlImagem,
     required this.horasValidadas,
     required this.verificado,
+    required super.quantidadeHoras,
   });
 
   bool verificado;
