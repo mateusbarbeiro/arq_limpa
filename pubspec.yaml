@@ -19,6 +19,7 @@ dependencies:
   mask_text_input_formatter:
   mockito: ^5.3.0
   build_runner: ^2.2.0
+  mailer: ^5.2.0
 
 dev_dependencies:
   flutter_test:
