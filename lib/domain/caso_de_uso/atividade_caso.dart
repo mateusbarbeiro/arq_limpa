@@ -1,11 +1,12 @@
 import 'package:arq_limpa/domain/entidades/grupo.dart';
+import 'package:get_it/get_it.dart';
 
 import '../dto/atividade_dto.dart';
 import '../entidades/atividade.dart';
 import '../interfaces/dao/i_atividade_dao.dart';
 
 class AtividadeCaso {
-  late IAtividadeDao atividadeDao;
+  late IAtividadeDao atividadeDao = GetIt.I.get<IAtividadeDao>();
 
   Future<bool> criar(AtividadeCriarDto criarDto) async {
     try {

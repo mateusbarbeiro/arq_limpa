@@ -1,8 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import '../../domain/dto/atividade_dto.dart';
-import '../../domain/dto/certificado_dto.dart';
 import '../../domain/interfaces/dao/i_atividade_dao.dart';
-import '../../domain/interfaces/dao/i_certificado_dao.dart';
 import 'conexao.dart';
 
 class AtividadeDaoSqlite extends IAtividadeDao {
@@ -88,11 +86,5 @@ class AtividadeDaoSqlite extends IAtividadeDao {
       object.grupoId,
       object.id,
     ]);
-  }
-
-  @override
-  Future updateSomeFields(Map<String, dynamic> updated) {
-    // TODO: implement updateSomeFields
-    throw UnimplementedError();
   }
 }

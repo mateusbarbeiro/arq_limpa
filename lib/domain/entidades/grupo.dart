@@ -5,7 +5,6 @@ class Grupo {
   String nome;
   String descricao;
   int horasObrigatorias;
-  List<Atividade>? atividades;
 
   Grupo({
     this.id,
@@ -32,7 +31,8 @@ class Grupo {
         : null;
 
     horasObrigatorias < 0
-        ? throw Exception('Quantidade obrigatória de horas não pode ser negativa')
+        ? throw Exception(
+            'Quantidade obrigatória de horas não pode ser negativa')
         : null;
   }
 }

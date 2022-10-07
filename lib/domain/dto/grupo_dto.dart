@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class GrupoCriarDto {
   String nome;
   String descricao;
@@ -13,11 +15,14 @@ class GrupoCriarDto {
 }
 
 class GrupoAtualizarDto extends GrupoCriarDto {
+  late int id;
+
   GrupoAtualizarDto({
     required super.nome,
     required super.descricao,
     required super.horasObrigatorias,
     super.atividadeIds,
+    required this.id,
   });
 }
 
@@ -26,5 +31,6 @@ class GrupoDto extends GrupoAtualizarDto {
     required super.nome,
     required super.descricao,
     required super.horasObrigatorias,
+    required super.id,
   });
 }

@@ -10,7 +10,7 @@ import 'atividade_caso.dart';
 
 class CertificadoCaso {
   late ICertificadoDao certificadoDao = GetIt.I.get<ICertificadoDao>();
-  late IAtividadeDao atividadeDao;
+  late IAtividadeDao atividadeDao = GetIt.I.get<IAtividadeDao>();
 
   Future<bool> criar(CertificadoCriarDto criarDto) async {
     try {

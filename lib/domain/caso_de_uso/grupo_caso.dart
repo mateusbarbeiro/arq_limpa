@@ -1,9 +1,10 @@
 import 'package:arq_limpa/domain/dto/grupo_dto.dart';
+import 'package:get_it/get_it.dart';
 
 import '../interfaces/dao/i_grupo_dao.dart';
 
 class GrupoCaso {
-  late IGrupoDao grupoDao;
+  late IGrupoDao grupoDao = GetIt.I.get<IGrupoDao>();
 
   Future<bool> criar(GrupoCriarDto criarDto) async {
     try {

@@ -23,7 +23,7 @@ const createTableGrupo = '''
     id INTEGER PRIMARY KEY
     ,nome VARCHAR(50) NOT NULL
     ,descricao VARCHAR(50) NOT NULL
-    ,horasObrigatorias INTEGER NOT NULL
+    ,horas_obrigatorias INTEGER NOT NULL
   )
 ''';
 
