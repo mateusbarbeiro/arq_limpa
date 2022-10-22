@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class GrupoCriarDto {
   String nome;
   String descricao;

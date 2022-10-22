@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class CertificadoCriarDto {
   String titulo;
   String descricao;

@@ -21,14 +21,29 @@ class CertificadoDaoTest implements ICertificadoDao {
 
   @override
   Future updateSomeFields(Map<String, dynamic> updated) {
-    // TODO: implement updateSomeFields
+    // TODO: implement deleteById
     throw UnimplementedError();
   }
 
   @override
   Future update(CertificadoAtualizarDto object) {
-    // TODO: implement update
-    throw UnimplementedError();
+    var entidade = Certificado.criar(
+      object,
+      Atividade(
+        id: 1,
+        nome: 'teste',
+        maximoHoras: 100,
+        equivalencia: 100,
+        grupo: Grupo(
+          id: 1,
+          horasObrigatorias: 10,
+          nome: "Nome",
+          descricao: "descricao",
+        ),
+      ),
+    );
+    _data[entidade.id.toString()] = entidade;
+    return Future.value();
   }
 
   @override
@@ -41,7 +56,11 @@ class CertificadoDaoTest implements ICertificadoDao {
         maximoHoras: 100,
         equivalencia: 100,
         grupo: Grupo(
-            id: 1, horasObrigatorias: 10, nome: "Nome", descricao: "descricao"),
+          id: 1,
+          horasObrigatorias: 10,
+          nome: "Nome",
+          descricao: "descricao",
+        ),
       ),
     );
     _data[entidade.id.toString()] = entidade;

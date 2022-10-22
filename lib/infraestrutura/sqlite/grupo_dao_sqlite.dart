@@ -1,7 +1,5 @@
 import 'package:sqflite/sqflite.dart';
-import '../../domain/dto/atividade_dto.dart';
 import '../../domain/dto/grupo_dto.dart';
-import '../../domain/interfaces/dao/i_atividade_dao.dart';
 import '../../domain/interfaces/dao/i_grupo_dao.dart';
 import 'conexao.dart';
 

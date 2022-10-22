@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
 import 'package:arq_limpa/aplicacao/test/certificado_test.mocks.dart';
 import 'package:arq_limpa/domain/dto/certificado_dto.dart';

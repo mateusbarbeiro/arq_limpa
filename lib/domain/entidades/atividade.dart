@@ -21,7 +21,7 @@ class Atividade {
     maximoHoras = dto.maximoHoras;
     id = dto.id;
     equivalencia = dto.equivalencia;
-    this.grupo = grupo;
+    grupo = grupo;
   }
 
   void validarNome() {

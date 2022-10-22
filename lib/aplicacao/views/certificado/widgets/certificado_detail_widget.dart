@@ -22,7 +22,7 @@ class CertificadoDetailWidget extends State<CertificadoDetailPage> {
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15),
-            child: Column(children: []),
+            child: Column(children: const []),
           ),
         );
       },
