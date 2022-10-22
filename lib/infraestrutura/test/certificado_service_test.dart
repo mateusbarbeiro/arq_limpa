@@ -13,8 +13,7 @@ class CertificadoServiceTest implements ICertificadoDao {
 
   @override
   Future<List<CertificadoDto>> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
+    return certificadoDao.getAll();
   }
 
   @override
@@ -25,8 +24,8 @@ class CertificadoServiceTest implements ICertificadoDao {
 
   @override
   Future insert(CertificadoCriarDto object) {
-    // TODO: implement insert
-    throw UnimplementedError();
+    certificadoDao.insert(object);
+    return Future.value();
   }
 
   @override

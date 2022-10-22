@@ -91,4 +91,19 @@ class Certificado {
     }
     return this;
   }
+
+  //TODO - VALIDAR COM MATHEUS
+  CertificadoDto toDto() {
+    return CertificadoDto(
+      id: id!,
+      titulo: titulo,
+      descricao: descricao,
+      dataEmissao: dataEmissao,
+      quantidadeHoras: quantidadeHoras,
+      verificado: verificado,
+      atividadeId: atividade.id!,
+      urlImagem: urlImagem!,
+      horasValidadas: quantidadeHorasValidadas,
+    );
+  }
 }

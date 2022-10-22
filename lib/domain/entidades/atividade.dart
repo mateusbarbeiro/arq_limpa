@@ -40,7 +40,7 @@ class Atividade {
         : null;
   }
 
-  void validarEquivalencia() {
+  void  validarEquivalencia() {
     equivalencia == 0
         ? throw Exception('Deve ser informado equivalencia')
         : null;

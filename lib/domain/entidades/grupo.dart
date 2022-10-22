@@ -1,5 +1,3 @@
-import 'package:arq_limpa/domain/entidades/atividade.dart';
-
 class Grupo {
   int? id;
   String nome;

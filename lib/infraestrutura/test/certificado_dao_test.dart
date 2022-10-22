@@ -1,6 +1,7 @@
-
 import 'package:arq_limpa/domain/dto/certificado_dto.dart';
+import 'package:arq_limpa/domain/entidades/atividade.dart';
 import 'package:arq_limpa/domain/entidades/certificado.dart';
+import 'package:arq_limpa/domain/entidades/grupo.dart';
 import 'package:arq_limpa/domain/interfaces/dao/i_certificado_dao.dart';
 
 class CertificadoDaoTest implements ICertificadoDao {
@@ -14,10 +15,9 @@ class CertificadoDaoTest implements ICertificadoDao {
 
   @override
   Future<CertificadoDto> getById(int id) {
-    // TODO: implement getById
+    // TODO: implement deleteById
     throw UnimplementedError();
   }
-
 
   @override
   Future updateSomeFields(Map<String, dynamic> updated) {
@@ -33,13 +33,28 @@ class CertificadoDaoTest implements ICertificadoDao {
 
   @override
   Future insert(CertificadoCriarDto object) {
-    // TODO: implement insert
-    throw UnimplementedError();
+    var entidade = Certificado.criar(
+      object,
+      Atividade(
+        id: 1,
+        nome: 'teste',
+        maximoHoras: 100,
+        equivalencia: 100,
+        grupo: Grupo(
+            id: 1, horasObrigatorias: 10, nome: "Nome", descricao: "descricao"),
+      ),
+    );
+    _data[entidade.id.toString()] = entidade;
+    return Future.value();
   }
 
   @override
-  Future<List<CertificadoDto>> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
+  Future<List<CertificadoDto>> getAll() async {
+    List<CertificadoDto> result = [];
+
+    _data.forEach((key, value) {
+      result.add(value.toDto());
+    });
+    return result;
   }
 }
