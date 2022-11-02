@@ -10,7 +10,7 @@ class GrupoDaoSqlite extends IGrupoDao {
   Future deleteById(int id) async {
     _db = await Conexao.get();
 
-    var sql = "DELETE FROM grupos WHERE id = ?";
+    var sql = "DELETE FROM grupo WHERE id = ?";
     await _db.rawDelete(sql, [id]);
   }
 
@@ -18,14 +18,14 @@ class GrupoDaoSqlite extends IGrupoDao {
   Future<List<GrupoDto>> getAll() async {
     _db = await Conexao.get();
 
-    List<Map<String, dynamic>> resultado = await _db.query("grupos");
+    List<Map<String, dynamic>> resultado = await _db.query("grupo");
     List<GrupoDto> grupos = List.generate(resultado.length, (i) {
       var linha = resultado[i];
       return GrupoDto(
           id: linha['id'],
           descricao: linha['descricao'],
           nome: linha['nome'],
-          horasObrigatorias: linha['horas_obrigatorias'] as int);
+          horasObrigatorias: linha['horasObrigatorias'] as int);
     });
 
     return grupos;
@@ -35,14 +35,14 @@ class GrupoDaoSqlite extends IGrupoDao {
   Future<GrupoDto> getById(int id) async {
     _db = await Conexao.get();
 
-    var sql = "SELECT * FROM grupos WHERE id = ?";
+    var sql = "SELECT * FROM grupo WHERE id = ?";
     Map<String, dynamic> linha = (await _db.rawQuery(sql, [id])).first;
 
     var grupo = GrupoDto(
         id: linha['id'],
         descricao: linha['descricao'],
         nome: linha['nome'],
-        horasObrigatorias: linha['horas_obrigatorias'] as int);
+        horasObrigatorias: linha['horasObrigatorias'] as int);
 
     return grupo;
   }
@@ -56,7 +56,7 @@ class GrupoDaoSqlite extends IGrupoDao {
     // }
 
     var sql =
-        '''INSERT INTO grupos (descricao, nome, horas_obrigatorias) VALUES (?, ?, ?)''';
+        '''INSERT INTO grupo (descricao, nome, horasObrigatorias) VALUES (?, ?, ?)''';
     await _db.rawInsert(sql, [
       object.descricao,
       object.nome,
@@ -68,10 +68,10 @@ class GrupoDaoSqlite extends IGrupoDao {
   Future update(GrupoAtualizarDto object) async {
     _db = await Conexao.get();
 
-    var sql = '''UPDATE grupos 
+    var sql = '''UPDATE grupo 
     SET descricao = ?,
     nome = ?,
-    horas_obrigatorias = ?
+    horasObrigatorias = ?
     WHERE id = ?''';
     await _db.rawUpdate(sql, [
       object.nome,

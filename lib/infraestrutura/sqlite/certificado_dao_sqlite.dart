@@ -10,7 +10,7 @@ class CertificadoDaoSqlite extends ICertificadoDao {
   Future deleteById(int id) async {
     _db = await Conexao.get();
 
-    var sql = "DELETE FROM certificados WHERE id = ?";
+    var sql = "DELETE FROM certificado WHERE id = ?";
     await _db.rawDelete(sql, [id]);
   }
 
@@ -18,7 +18,7 @@ class CertificadoDaoSqlite extends ICertificadoDao {
   Future<List<CertificadoDto>> getAll() async {
     _db = await Conexao.get();
 
-    List<Map<String, dynamic>> resultado = await _db.query("certificados");
+    List<Map<String, dynamic>> resultado = await _db.query("certificado");
     List<CertificadoDto> certificados = List.generate(resultado.length, (i) {
       var linha = resultado[i];
       return CertificadoDto(
@@ -26,7 +26,7 @@ class CertificadoDaoSqlite extends ICertificadoDao {
         titulo: linha['titulo'],
         dataEmissao: linha['dataEmissao'],
         descricao: linha['descricao'],
-        atividadeId: linha['atividade_id'] as int,
+        atividadeId: linha['atividadeId'] as int,
         quantidadeHoras: double.parse(linha['quantidadeHoras']),
         horasValidadas: double.parse(linha['quantidadeHorasValidadas']),
         verificado: linha['verificado'] as bool,
@@ -41,7 +41,7 @@ class CertificadoDaoSqlite extends ICertificadoDao {
   Future<CertificadoDto> getById(int id) async {
     _db = await Conexao.get();
 
-    var sql = "SELECT * FROM certificados WHERE id = ?";
+    var sql = "SELECT * FROM certificado WHERE id = ?";
     Map<String, dynamic> linha = (await _db.rawQuery(sql, [id])).first;
 
     var certificado = CertificadoDto(
@@ -49,7 +49,7 @@ class CertificadoDaoSqlite extends ICertificadoDao {
       titulo: linha['titulo'],
       dataEmissao: linha['dataEmissao'],
       descricao: linha['descricao'],
-      atividadeId: linha['atividade_id'] as int,
+      atividadeId: linha['atividadeId'] as int,
       quantidadeHoras: double.parse(linha['quantidadeHoras']),
       horasValidadas: double.parse(linha['quantidadeHorasValidadas']),
       verificado: linha['verificado'] as bool,
@@ -63,13 +63,9 @@ class CertificadoDaoSqlite extends ICertificadoDao {
   Future insert(CertificadoCriarDto object) async {
     _db = await Conexao.get();
 
-    // if (object.id != null) {
-    //   throw Exception();
-    // }
-
-    var sql = '''INSERT INTO certificados (titulo, dataEmissao, descricao, 
-      atividade_id, quantidadeHoras, 
-      verificado, urlImage) VALUES (?, ?, ?, ?, ?, ?, ?)''';
+    var sql = '''INSERT INTO certificado (titulo, dataEmissao, descricao, 
+      atividadeId, quantidadeHoras, verificado, urlImage) 
+      VALUES (?, ?, ?, ?, ?, ?, ?)''';
     await _db.rawInsert(sql, [
       object.titulo,
       object.dataEmissao,
@@ -85,12 +81,12 @@ class CertificadoDaoSqlite extends ICertificadoDao {
   Future update(CertificadoAtualizarDto object) async {
     _db = await Conexao.get();
 
-    var sql = '''UPDATE certificados 
+    var sql = '''UPDATE certificado 
     SET titulo = ?,
     descricao = ?,
     dataEmissao = ?,
     quantidadeHoras = ?,
-    atividade_id = ?,
+    atividadeId = ?,
     urlImage = ? 
     WHERE id = ?''';
     await _db.rawUpdate(sql, [

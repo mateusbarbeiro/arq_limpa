@@ -10,7 +10,7 @@ class AtividadeDaoSqlite extends IAtividadeDao {
   Future deleteById(int id) async {
     _db = await Conexao.get();
 
-    var sql = "DELETE FROM atividades WHERE id = ?";
+    var sql = "DELETE FROM atividade WHERE id = ?";
     await _db.rawDelete(sql, [id]);
   }
 
@@ -18,14 +18,14 @@ class AtividadeDaoSqlite extends IAtividadeDao {
   Future<List<AtividadeDto>> getAll() async {
     _db = await Conexao.get();
 
-    List<Map<String, dynamic>> resultado = await _db.query("atividades");
+    List<Map<String, dynamic>> resultado = await _db.query("atividade");
     List<AtividadeDto> atividades = List.generate(resultado.length, (i) {
       var linha = resultado[i];
       return AtividadeDto(
         id: linha['id'],
         equivalencia: linha['equivalencia'],
-        grupoId: linha['grupo_id'] as int,
-        maximoHoras: linha['maximo_horas'] as int,
+        grupoId: linha['grupoId'] as int,
+        maximoHoras: linha['maximoHoras'] as int,
         nome: linha['nome'],
       );
     });
@@ -37,14 +37,14 @@ class AtividadeDaoSqlite extends IAtividadeDao {
   Future<AtividadeDto> getById(int id) async {
     _db = await Conexao.get();
 
-    var sql = "SELECT * FROM atividades WHERE id = ?";
+    var sql = "SELECT * FROM atividade WHERE id = ?";
     Map<String, dynamic> linha = (await _db.rawQuery(sql, [id])).first;
 
     var atividade = AtividadeDto(
       id: linha['id'],
       equivalencia: linha['equivalencia'],
-      grupoId: linha['grupo_id'] as int,
-      maximoHoras: linha['maximo_horas'] as int,
+      grupoId: linha['grupoId'] as int,
+      maximoHoras: linha['maximoHoras'] as int,
       nome: linha['nome'],
     );
 
@@ -55,12 +55,8 @@ class AtividadeDaoSqlite extends IAtividadeDao {
   Future insert(AtividadeCriarDto object) async {
     _db = await Conexao.get();
 
-    // if (object.id != null) {
-    //   throw Exception();
-    // }
-
-    var sql = '''INSERT INTO atividades (nome, maximo_horas, equivalencia, 
-      grupo_id) VALUES (?, ?, ?, ?)''';
+    var sql = '''INSERT INTO atividade (nome, maximoHoras, equivalencia, 
+      grupoId) VALUES (?, ?, ?, ?)''';
     await _db.rawInsert(sql, [
       object.nome,
       object.maximoHoras,
@@ -73,11 +69,11 @@ class AtividadeDaoSqlite extends IAtividadeDao {
   Future update(AtividadeAtualizarDto object) async {
     _db = await Conexao.get();
 
-    var sql = '''UPDATE atividades 
+    var sql = '''UPDATE atividade 
     SET nome = ?,
-    maximo_horas = ?,
+    maximoHoras = ?,
     equivalencia = ?,
-    grupo_id = ? 
+    grupoId = ? 
     WHERE id = ?''';
     await _db.rawUpdate(sql, [
       object.nome,
