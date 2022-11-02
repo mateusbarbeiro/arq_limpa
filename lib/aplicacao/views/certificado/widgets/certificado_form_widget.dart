@@ -1,9 +1,14 @@
+import 'package:arq_limpa/aplicacao/views/certificado/controller/grupo_controller.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/botoes/botao_widget.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/botoes/custom_switch.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/app_dropdown_input.dart';
+import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/dropdown_field.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/input_data_widget.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/input_texto_widget.dart';
+import 'package:arq_limpa/domain/dto/grupo_dto.dart';
 import 'package:flutter/material.dart';
+import '../../../../domain/dto/atividade_dto.dart';
+import '../controller/atividade_controller.dart';
 import '../controller/certificado_controller.dart';
 import '../certificado_form_page.dart';
 
@@ -11,6 +16,21 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
   final formKey = GlobalKey<FormState>();
 
   final CertificadoController controller = CertificadoController();
+  final GrupoController grupoController = GrupoController();
+  final AtividadeController atividadeController = AtividadeController();
+  List<GrupoDto> grupos = [];
+  List<AtividadeDto> atividades = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    grupoController.allGrupos.then((value) {
+      setState(() {
+        grupos = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +51,8 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
               inputHoras(),
               inputHorasValidas(),
               certificadoValido(),
-              inputCategoria(),
+              inputGrupo(),
+              inputAtividade(),
               inputUrl(),
               botaoCadastrar(),
             ],
@@ -140,22 +161,55 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
     );
   }
 
-  AppDropdownInput inputCategoria() {
-    return AppDropdownInput<String>(
-      paddingBottom: 0,
+  DropDownField inputAtividade() {
+    return DropDownField<AtividadeDto>(
       paddingTop: 30,
-      hintText: "Grupo",
-      options: controller.grupos,
-      value: controller.grupo,
-      onChanged: (String? value) {
-        setState(() {
-          if (value != null) {
-            controller.grupo = value;
-          }
-        });
-      },
-      getLabel: (String value) => value,
+      getLabel: (x) => x.nome,
+      value: controller.atividade,
+      options: atividades,
+      onChanged: (d) {},
+      enabled: controller.grupo == null,
+      labelText: 'Atividade',
     );
+  }
+
+  DropDownField inputGrupo() {
+    return DropDownField<GrupoDto>(
+      paddingTop: 30,
+      getLabel: (x) => x.nome,
+      value: controller.grupo,
+      options: grupos,
+      onChanged: (d) {
+        getAtividade(d?.id ?? 1);
+        setState(() {});
+      },
+      labelText: 'Grupo',
+    );
+    // return AppDropdownInput<String>(
+    //   paddingBottom: 0,
+    //   paddingTop: 30,
+    //   hintText: "Grupo",
+    //   options: controller.grupos,
+    //   value: controller.grupoId,
+    //   onChanged: (String? value) {
+    //     setState(() {
+    //       if (value != null) {
+    //         controller.grupo = value;
+    //       }
+    //     });
+    //   },
+    //   getLabel: (String value) => value,
+    // );
+  }
+
+  void getAtividade(int id) {
+    // setState(() {
+    atividadeController.atividadesDoGrupo(id).then((value) {
+      // setState(() {
+      atividades = value;
+      // });
+    });
+    // });
   }
 
   InputTextoWidget inputUrl() {

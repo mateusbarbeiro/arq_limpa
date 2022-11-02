@@ -10,4 +10,6 @@ abstract class IAtividadeDao {
   Future<AtividadeDto> getById(int id);
 
   Future<List<AtividadeDto>> getAll();
+
+  Future<List<AtividadeDto>> getByGrupoId(int id);
 }

@@ -6,12 +6,21 @@ class Conexao {
 
   static Future<Database> get() async {
     if (_db == null) {
-      var path = join(await getDatabasesPath(), 'certificado_arq_limp');
-      _db = await openDatabase(path, version: 1, onCreate: (db, v) {
+      var path = join(await getDatabasesPath(), 'certificado_arq1');
+      _db = await openDatabase(path, version: 1, onCreate: (db, v) async {
         db.execute(createTableGrupo);
         db.execute(createTableAtividade);
         db.execute(createTableCertificado);
         db.execute(insertGrupos);
+        db.execute(insertAtividade);
+
+        // for (var element in await db.query('grupo')) {
+        //   print(element['nome']);
+        // }
+
+        // for (var element in await db.query('atividade')) {
+        //   print(element['nome']);
+        // }
       });
     }
     return _db!;
@@ -58,4 +67,17 @@ const insertGrupos = '''
   ('Grupo I','Atividades de ensino','50'),
   ('Grupo II','Atividades de pesquisa','50'),
   ('Grupo III','Atividades sociais','50');
+''';
+
+const insertAtividade = '''
+  insert into atividade (nome, maximoHoras, equivalencia, grupoId) values
+  ('Estágio Supervisionado', 50, 10, 1),
+  ('Encontros em áreas correlatas ao curso', 50, 100, 1),
+  ('Outras atividades de ensino', 50, 50, 1),
+  ('Participação como expositor em exposições técnico-científicas', 40, 100, 2),
+  ('Outras atividades de Pesquisa, Extensão e Inovação', 20, 50, 2),
+  ('Publicações em revistas técnicas', 40, 100, 2),
+  ('Participação em atividades esportiva', 20, 100, 3),
+  ('Participação em atividades beneficentes', 40, 100,3),
+  ('Outras atividades de formação social, humana e cultural', 20, 50, 3);
 ''';

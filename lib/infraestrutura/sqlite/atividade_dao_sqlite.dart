@@ -52,6 +52,27 @@ class AtividadeDaoSqlite extends IAtividadeDao {
   }
 
   @override
+  Future<List<AtividadeDto>> getByGrupoId(int id) async {
+    _db = await Conexao.get();
+
+    var sql = "SELECT * FROM atividade WHERE grupoId = ?";
+    List<Map<String, dynamic>> linhas = await _db.rawQuery(sql, [id]);
+
+    List<AtividadeDto> atividades = List.generate(linhas.length, (i) {
+      var linha = linhas[i];
+      return AtividadeDto(
+        id: linha['id'],
+        equivalencia: linha['equivalencia'],
+        grupoId: linha['grupoId'] as int,
+        maximoHoras: linha['maximoHoras'] as int,
+        nome: linha['nome'],
+      );
+    });
+
+    return atividades;
+  }
+
+  @override
   Future insert(AtividadeCriarDto object) async {
     _db = await Conexao.get();
 
