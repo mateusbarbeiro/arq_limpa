@@ -8,6 +8,10 @@ import '../interfaces/dao/i_atividade_dao.dart';
 class AtividadeCaso {
   late IAtividadeDao atividadeDao = GetIt.I.get<IAtividadeDao>();
 
+  Future<List<AtividadeDto>> atividadesDoGrupo(int id) async {
+    return await atividadeDao.getByGrupoId(id);
+  }
+
   Future<bool> criar(AtividadeCriarDto criarDto) async {
     try {
       await atividadeDao.insert(criarDto);

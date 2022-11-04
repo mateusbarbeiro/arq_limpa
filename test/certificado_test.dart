@@ -7,7 +7,7 @@ void main() {
   Certificado certificado = Certificado(
     titulo: "titulo",
     descricao: "descricao",
-    dataEmissao: DateTime.now(),
+    dataEmissao: "20-10-2022",
     quantidadeHoras: 10,
     quantidadeHorasValidadas: 10,
     verificado: false,

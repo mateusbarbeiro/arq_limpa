@@ -1,16 +1,16 @@
 import 'package:arq_limpa/aplicacao/views/certificado/controller/grupo_controller.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/botoes/botao_widget.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/botoes/custom_switch.dart';
-import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/app_dropdown_input.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/dropdown_field.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/input_data_widget.dart';
 import 'package:arq_limpa/aplicacao/views/shared_widgets/inputs/input_texto_widget.dart';
 import 'package:arq_limpa/domain/dto/grupo_dto.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../domain/dto/atividade_dto.dart';
+import '../certificado_form_page.dart';
 import '../controller/atividade_controller.dart';
 import '../controller/certificado_controller.dart';
-import '../certificado_form_page.dart';
 
 class CertificadoPageWidget extends State<CertificadoFormPage> {
   final formKey = GlobalKey<FormState>();
@@ -49,8 +49,8 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
               inputDescricao(),
               inputData(),
               inputHoras(),
-              inputHorasValidas(),
-              certificadoValido(),
+              // inputHorasValidas(),
+              // certificadoValido(),
               inputGrupo(),
               inputAtividade(),
               inputUrl(),
@@ -149,7 +149,7 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
 
   CustomSwitch certificadoValido() {
     return CustomSwitch(
-      paddingTop: 15,
+      paddingTop: 0,
       paddingBottom: 0,
       label: "Certifcado valido",
       value: controller.status,
@@ -163,11 +163,13 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
 
   DropDownField inputAtividade() {
     return DropDownField<AtividadeDto>(
-      paddingTop: 30,
+      paddingTop: 15,
       getLabel: (x) => x.nome,
       value: controller.atividade,
       options: atividades,
-      onChanged: (d) {},
+      onChanged: (d) {
+        controller.atividade = d;
+      },
       enabled: controller.grupo == null,
       labelText: 'Atividade',
     );
@@ -175,41 +177,24 @@ class CertificadoPageWidget extends State<CertificadoFormPage> {
 
   DropDownField inputGrupo() {
     return DropDownField<GrupoDto>(
-      paddingTop: 30,
+      paddingTop: 15,
       getLabel: (x) => x.nome,
       value: controller.grupo,
       options: grupos,
-      onChanged: (d) {
-        getAtividade(d?.id ?? 1);
-        setState(() {});
-      },
       labelText: 'Grupo',
+      onChanged: (d) {
+        setState(() {
+          controller.atividade = null;
+          getAtividade(d?.id ?? 1);
+        });
+      },
     );
-    // return AppDropdownInput<String>(
-    //   paddingBottom: 0,
-    //   paddingTop: 30,
-    //   hintText: "Grupo",
-    //   options: controller.grupos,
-    //   value: controller.grupoId,
-    //   onChanged: (String? value) {
-    //     setState(() {
-    //       if (value != null) {
-    //         controller.grupo = value;
-    //       }
-    //     });
-    //   },
-    //   getLabel: (String value) => value,
-    // );
   }
 
   void getAtividade(int id) {
-    // setState(() {
     atividadeController.atividadesDoGrupo(id).then((value) {
-      // setState(() {
       atividades = value;
-      // });
     });
-    // });
   }
 
   InputTextoWidget inputUrl() {

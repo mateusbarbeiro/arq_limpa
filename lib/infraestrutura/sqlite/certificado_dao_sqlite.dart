@@ -28,9 +28,9 @@ class CertificadoDaoSqlite extends ICertificadoDao {
         descricao: linha['descricao'],
         atividadeId: linha['atividadeId'] as int,
         quantidadeHoras: double.parse(linha['quantidadeHoras']),
-        horasValidadas: double.parse(linha['quantidadeHorasValidadas']),
-        verificado: linha['verificado'] as bool,
-        urlImagem: linha['urlImagem'],
+        horasValidadas: double.parse(linha['quantidadeHorasValidadas'] ?? "0"),
+        verificado: linha['verificado'] == 1,
+        urlImagem: linha['urlImagem'] ?? '',
       );
     });
 

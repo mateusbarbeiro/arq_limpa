@@ -1,7 +1,7 @@
 class CertificadoCriarDto {
   String titulo;
   String descricao;
-  DateTime dataEmissao;
+  String dataEmissao;
   double quantidadeHoras;
   int atividadeId;
   String urlImagem;

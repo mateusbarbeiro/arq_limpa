@@ -9,7 +9,7 @@ class CertificadoDetailWidget extends State<CertificadoDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<CertificadoDto>(
+    return FutureBuilder<CertificadoDto?>(
       future: _controller.getById(widget.id),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {

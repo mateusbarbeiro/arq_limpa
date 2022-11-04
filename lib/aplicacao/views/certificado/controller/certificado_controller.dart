@@ -1,15 +1,14 @@
 import 'package:arq_limpa/aplicacao/views/certificado/certificado_form_page.dart';
+import 'package:arq_limpa/domain/caso_de_uso/certificado_caso.dart';
 import 'package:arq_limpa/domain/dto/atividade_dto.dart';
 import 'package:arq_limpa/domain/dto/certificado_dto.dart';
 import 'package:arq_limpa/domain/dto/grupo_dto.dart';
-import 'package:arq_limpa/domain/entidades/atividade.dart';
-import 'package:arq_limpa/domain/interfaces/dao/i_certificado_dao.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 
 class CertificadoController {
   final formKey = GlobalKey<FormState>();
-  final ICertificadoDao _service = GetIt.I.get<ICertificadoDao>();
+  final CertificadoCaso caso = CertificadoCaso();
 
   final tituloController = TextEditingController();
   final descricaoController = TextEditingController();
@@ -23,7 +22,7 @@ class CertificadoController {
   AtividadeDto? atividade;
 
   Future<List<CertificadoDto>> get allCertificados async {
-    return _service.getAll();
+    return caso.buscarTodos();
   }
 
   Future goToForm(BuildContext context) async {
@@ -34,21 +33,23 @@ class CertificadoController {
     );
   }
 
-  void insertCertificado(BuildContext context) {
+  Future insertCertificado(BuildContext context) async {
+    if (atividade == null) return;
+
     CertificadoCriarDto certificado = CertificadoCriarDto(
       titulo: tituloController.text,
       descricao: descricaoController.text,
-      dataEmissao: DateTime.parse(dataEmissaoController.text),
+      dataEmissao: dataEmissaoController.text,
       quantidadeHoras: double.parse(quantHorasController.text),
-      atividadeId: 1,
-      urlImagem: "",
+      atividadeId: atividade!.id,
+      urlImagem: urlImagemController.text,
     );
 
-    _service.insert(certificado);
+    await caso.criar(certificado);
     Navigator.pop(context);
   }
 
-  Future<CertificadoDto> getById(int id) async {
-    return await _service.getById(id);
+  Future<CertificadoDto?> getById(int id) async {
+    return await caso.buscarPorId(id);
   }
 }

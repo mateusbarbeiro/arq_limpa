@@ -38,6 +38,7 @@ class DropDownField<T> extends StatelessWidget {
         right: 35,
       ),
       child: DropdownButtonFormField<T>(
+          isExpanded: true,
         items: options.map((T value) {
           return DropdownMenuItem<T>(
             value: value,
@@ -53,7 +54,8 @@ class DropDownField<T> extends StatelessWidget {
         elevation: 2,
         style: TextStyle(
           color: textColor ?? Colors.black,
-          fontSize: 16,
+          overflow: TextOverflow.ellipsis,
+          fontSize: 17,
         ),
         isDense: true,
         iconSize: 30.0,
@@ -92,27 +94,6 @@ class DropDownField<T> extends StatelessWidget {
             ),
           ),
         ),
-        // decoration: InputDecoration(
-        //   contentPadding: const EdgeInsets.symmetric(
-        //     horizontal: 20.0,
-        //   ),
-        //   labelText: labelText,
-        //   labelStyle: TextStyle(
-        //     color: backgroundColor != null
-        //         ? Colors.white
-        //         : Theme.of(context).primaryColor,
-        //     fontWeight: FontWeight.w400,
-        //     fontSize: 17,
-        //   ),
-        //   enabledBorder: _customBorder(context, backgroundColor),
-        //   border: _customBorder(context, backgroundColor),
-        //   focusedBorder: _customBorder(context, backgroundColor),
-        //   errorBorder: _customBorder(context, Colors.red),
-        //   filled: backgroundColor != null,
-        //   fillColor: backgroundColor ?? Colors.transparent,
-        //   hoverColor: Colors.transparent,
-        //   focusColor: Colors.transparent,
-        // ),
         focusColor: Colors.transparent,
       ),
     );

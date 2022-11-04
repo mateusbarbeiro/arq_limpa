@@ -5,7 +5,7 @@ class Certificado {
   late int? id;
   late String titulo;
   late String descricao;
-  late DateTime dataEmissao;
+  late String dataEmissao;
   late double quantidadeHoras;
   late double quantidadeHorasValidadas;
   late bool verificado;
